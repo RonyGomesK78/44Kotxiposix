@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/44kotxiposix.iml" filepath="$PROJECT_DIR$/.idea/44kotxiposix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-java/arrays/arrays.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-java/arrays/arrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-java/basic-java.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-java/basic-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-oop/bookRoom/bookRoom.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-oop/bookRoom/bookRoom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-oop/guessNumber/guessNumber.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-oop/guessNumber/guessNumber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-oop/helloWord/helloWord.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-oop/helloWord/helloWord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-oop/moneyInBank/moneyInBank.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-oop/moneyInBank/moneyInBank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-oop/rockPaperScissors/rockPaperScissors.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-oop/rockPaperScissors/rockPaperScissors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercices/module-1/basic-java/strings/strings.iml" filepath="$PROJECT_DIR$/exercices/module-1/basic-java/strings/strings.iml" />
+    </modules>
+  </component>
+</project>
