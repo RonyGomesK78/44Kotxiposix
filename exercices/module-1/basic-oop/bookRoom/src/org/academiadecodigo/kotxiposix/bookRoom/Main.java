@@ -28,6 +28,16 @@ public class Main {
         System.out.println();
         hotel.printRooms();
 
+        client2.takeKey();
 
+        client3.earnMyHotel(hotel);
+        client3.takeKey();
+        System.out.println();
+
+        hotel.printRooms();
+
+        client1.clientInfo();
+        client2.clientInfo();
+        client3.clientInfo();
     }
 }

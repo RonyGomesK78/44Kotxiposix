@@ -30,17 +30,28 @@ public class Client {
 
     public void takeKey(){
 
-        if(roomNumber == -1){
+        if(myHotel != null){
 
-            roomNumber = myHotel.checkIn();
+            if(roomNumber == -1){
+
+                roomNumber = myHotel.checkIn(roomNumber);
+            }
         }
     }
 
     public void giveKey(){
 
-        if(myHotel.checkOut(roomNumber)){
+        if(myHotel != null){
 
-            roomNumber = -1;
+            if(myHotel.checkOut(roomNumber)){
+
+                roomNumber = -1;
+            }
         }
+    }
+
+    public void clientInfo(){
+
+        System.out.println(name + " : " + roomNumber);
     }
 }

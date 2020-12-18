@@ -20,19 +20,22 @@ public class Hotel {
         return name;
     }
 
-    public int checkIn(){
+    public int checkIn(int key){
+
+        if(key == -1){
 
 
-        for(int i = 0; i < rooms.length; i++){
+            for(int i = 0; i < rooms.length; i++){
 
-            if(rooms[i].getAvailability()){ //if true means the room is available and  return a key(index)
+                if(rooms[i].getAvailability()){ //if true means the room is available and  return a key(index)
 
-                rooms[i].setAvailability(false);
-                return i;
+                    rooms[i].setAvailability(false);
+                    return i;
+                }
             }
         }
 
-        return -1;
+        return -1; // return -1 if the client had already check in or if no rooms is available
     }
 
     public boolean checkOut(int key){
