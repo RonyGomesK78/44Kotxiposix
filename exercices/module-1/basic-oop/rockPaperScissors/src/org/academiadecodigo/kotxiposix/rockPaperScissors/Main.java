@@ -7,8 +7,8 @@ public class Main {
 
         Player[] players = {
 
-                new Player("Goku"),
-                new Player("Vegeta")
+                new Player("Luis"),
+                new Player("Rony")
         };
 
         Game game = new Game(5, players);

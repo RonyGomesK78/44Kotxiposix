@@ -14,8 +14,10 @@ public class Main {
 
         Hotel hotel = new Hotel(hotelName, numberOfRooms);
 
+
         client1.earnMyHotel(hotel);
         client1.takeKey();
+        client1.
         //System.out.println(client1.seeRoomNumber());
 
         client2.earnMyHotel(hotel);
