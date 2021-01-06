@@ -73,7 +73,7 @@ public class Game {
                 }
 
                 if (!cars[i].isCrashed()){
-                    
+
                     if(cars[i].getPos().getCol() == cars[j].getPos().getCol() && cars[i].getPos().getRow() == cars[j].getPos().getRow()){
 
                         cars[i].setCrashed();
