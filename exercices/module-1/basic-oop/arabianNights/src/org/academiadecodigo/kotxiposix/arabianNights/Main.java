@@ -22,9 +22,12 @@ public class Main {
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
-        //lamp.recharge();
+        lamp.recharge();
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
         lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
+        lamp.rub(RandomNumberGenerator.generateNumber(100) + 1);
+
+
     }
 }

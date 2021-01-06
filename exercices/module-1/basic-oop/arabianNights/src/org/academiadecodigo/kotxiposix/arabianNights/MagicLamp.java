@@ -106,18 +106,21 @@ public class MagicLamp {
         return total;
     }
 
-    public void recharge(RecyclableGenie recyclableGenie){
+    public void recharge(){
 
-        recyclableGenie.recycle();
+        if(recyclableGenie.recycle()){
 
-        if(recyclableGenie.getCanRecycled()){
-
-            genie = null;
+            genie = new Genie[numberOfGenies];
+            remainingGenies = numberOfGenies;
             releaseNumber = 0;
         }
     }
 
+    public boolean compare(MagicLamp magicLamp){
 
-
-
+        return this.numberOfGenies == magicLamp.numberOfGenies &&
+                this.remainingGenies == magicLamp.remainingGenies &&
+                this.recyclableGenie.isCanRecycled() == magicLamp.recyclableGenie.isCanRecycled();
+    }
 }
+

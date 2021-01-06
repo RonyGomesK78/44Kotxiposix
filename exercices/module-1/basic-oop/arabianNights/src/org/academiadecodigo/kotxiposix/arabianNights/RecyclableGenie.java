@@ -9,7 +9,7 @@ public class RecyclableGenie extends Genie{
         super(GenieType.RecyclableDemon ,numberOfWishes);
     }
 
-    public boolean getCanRecycled(){
+    public boolean isCanRecycled() {
 
         return canRecycled;
     }
@@ -47,12 +47,15 @@ public class RecyclableGenie extends Genie{
         }
     }
 
-    public void recycle(){
+    public boolean recycle(){
 
         if(canRecycled){
 
             canRecycled = false;
+            return true;
         }
+
+        return false;
     }
 }
 

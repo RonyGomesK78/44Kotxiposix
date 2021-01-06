@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="86708403-9b57-4e40-9f57-496240283e17" name="Default Changelist" comment="" />
+    <list default="true" id="86708403-9b57-4e40-9f57-496240283e17" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/MagicLamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/MagicLamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/RecyclableGenie.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercices/module-1/basic-oop/arabianNights/src/org/academiadecodigo/kotxiposix/arabianNights/RecyclableGenie.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +36,8 @@
       <option name="presentableId" value="Default" />
       <updated>1608231514915</updated>
       <workItem from="1608231517311" duration="7000" />
+      <workItem from="1609677417300" duration="7000" />
+      <workItem from="1609695145658" duration="34000" />
     </task>
     <servers />
   </component>
