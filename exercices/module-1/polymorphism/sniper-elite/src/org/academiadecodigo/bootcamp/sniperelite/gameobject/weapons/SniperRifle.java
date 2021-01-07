@@ -1,6 +1,8 @@
 package org.academiadecodigo.bootcamp.sniperelite.gameobject.weapons;
 
+import org.academiadecodigo.bootcamp.sniperelite.gameobject.decor.Barrel;
 import org.academiadecodigo.bootcamp.sniperelite.gameobject.enemy.Enemy;
+import org.academiadecodigo.bootcamp.sniperelite.interfaces.Destroyable;
 
 /**
  * A sniper rifle used to kill enemies
@@ -29,16 +31,28 @@ public class SniperRifle {
      * Take a shoot at an enemy
      * @param target the enemy to shoot
      */
-    public void shoot(Enemy target) {
+    public void shoot(Destroyable target) {
 
         shotsFired++;
 
         if(Math.random() < HIT_PROBABILITY) {
 
-            target.hit(bulletDamage);
-            System.out.println("It's a hit!");
+            if(target instanceof Enemy){
 
-        } else {
+                Enemy eTarget = (Enemy)target;
+                eTarget.hit(bulletDamage);
+            }
+            else{
+
+                Barrel bTarget = (Barrel)target;
+                bTarget.hit(bulletDamage);
+
+            }
+            //target.hit(bulletDamage);
+
+            System.out.println("It's a hit!");
+        }
+        else {
             System.out.println("It's a miss!");
         }
 

@@ -1,9 +1,11 @@
 package org.academiadecodigo.bootcamp.sniperelite.gameobject.enemy;
 
+import org.academiadecodigo.bootcamp.sniperelite.interfaces.Destroyable;
+
 /**
  * An enemy with an armour
  */
-public class ArmouredEnemy extends Enemy {
+public class ArmouredEnemy extends Enemy implements Destroyable {
 
     private int armour;
 
@@ -32,7 +34,11 @@ public class ArmouredEnemy extends Enemy {
         damage -= armour;
         armour = 0;
         super.hit(damage);
-
     }
 
+    @Override
+    public String getMessage() {
+
+        return getClass().getSimpleName();
+    }
 }

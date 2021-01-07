@@ -12,7 +12,6 @@ public class GameObjectFactory {
     public static Enemy createEnemy() {
 
         return Math.random() > 0.5 ? new SoldierEnemy(ENEMY_HEALTH) : new ArmouredEnemy(ENEMY_HEALTH, ARMOUR);
-
     }
 
 }

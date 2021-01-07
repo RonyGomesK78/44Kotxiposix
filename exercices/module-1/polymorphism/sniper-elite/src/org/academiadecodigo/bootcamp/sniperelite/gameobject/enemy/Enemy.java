@@ -1,11 +1,12 @@
 package org.academiadecodigo.bootcamp.sniperelite.gameobject.enemy;
 
 import org.academiadecodigo.bootcamp.sniperelite.gameobject.GameObject;
+import org.academiadecodigo.bootcamp.sniperelite.interfaces.Destroyable;
 
 /**
  * An enemy class containing generic enemy functionality and meant for subclassing
  */
-public abstract class Enemy extends GameObject {
+public abstract class Enemy extends GameObject implements org.academiadecodigo.bootcamp.sniperelite.interfaces.Destroyable {
 
     private int health;
     private boolean dead;
@@ -22,7 +23,8 @@ public abstract class Enemy extends GameObject {
         return health;
     }
 
-    public boolean isDead() {
+    @Override
+    public boolean isDestroyed() {
         return dead;
     }
 
@@ -30,6 +32,9 @@ public abstract class Enemy extends GameObject {
      * Removes health according to the hit damage
      * @param damage the damage impact
      */
+
+
+    @Override
     public void hit(int damage) {
 
         health = health - damage > 0 ? health - damage : 0;
