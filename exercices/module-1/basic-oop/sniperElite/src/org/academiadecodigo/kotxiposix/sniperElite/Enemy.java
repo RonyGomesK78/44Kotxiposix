@@ -6,7 +6,6 @@ public abstract class Enemy extends GameObject{
     private boolean isDead;
 
     public Enemy(){
-
     }
 
     public Enemy(int health){
