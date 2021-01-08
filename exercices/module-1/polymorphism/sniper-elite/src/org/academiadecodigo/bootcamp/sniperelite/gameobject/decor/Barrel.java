@@ -20,12 +20,16 @@ public class Barrel extends GameObject implements Destroyable {
     @Override
     public void hit(int damage) {
 
-        currentDamage = currentDamage - damage > 0 ? currentDamage - damage : 0;
+        if (!isDestroyed()){
 
-        if (currentDamage == 0) {
+            currentDamage += damage;
+            if (currentDamage >= barrelType.getMaxDamage()) {
 
-            destroyed = true;
+                currentDamage = barrelType.getMaxDamage();
+                destroyed = true;
+            }
         }
+
     }
 
     @Override

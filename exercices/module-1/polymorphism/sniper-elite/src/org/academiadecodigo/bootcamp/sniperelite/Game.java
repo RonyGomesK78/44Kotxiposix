@@ -42,11 +42,11 @@ public class Game {
 
             if (gameObject instanceof Destroyable) {
 
-                System.out.println("Making the shot...");
 
                 Destroyable destroyable = (Destroyable) gameObject;
-                while (!((Destroyable) gameObject).isDestroyed()){
+                while (!destroyable.isDestroyed()){
 
+                    System.out.println("Making the shot...");
                     sniperRifle.shoot(destroyable);
                 }
                 /*if(gameObject instanceof Enemy){ // PARA ISSO QUE SERVE POLIMORFISMO BURROOOOO
@@ -67,7 +67,7 @@ public class Game {
                 }*/
 
                 System.out.println("Target is neutralized. I repeat, Target is neutralized!");
-
+                System.out.println();
             }
         }
 
