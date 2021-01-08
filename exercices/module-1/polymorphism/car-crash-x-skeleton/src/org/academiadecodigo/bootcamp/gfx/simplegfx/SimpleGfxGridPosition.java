@@ -4,6 +4,8 @@ import org.academiadecodigo.bootcamp.grid.GridColor;
 import org.academiadecodigo.bootcamp.grid.GridDirection;
 import org.academiadecodigo.bootcamp.grid.position.AbstractGridPosition;
 import org.academiadecodigo.bootcamp.grid.position.GridPosition;
+import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
@@ -19,9 +21,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      * @param grid Simple graphics grid
      */
     public SimpleGfxGridPosition(SimpleGfxGrid grid){
-        super((int) (Math.random() * grid.getCols()), (int) (Math.random() * grid.getRows()), grid);
 
-        throw new UnsupportedOperationException();
+        super((int) (Math.random() * grid.getCols()), (int) (Math.random() * grid.getRows()), grid);
+        simpleGfxGrid = grid;
+        rectangle = new Rectangle(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, grid.getCellSize(), grid.getCellSize());
+        rectangle.fill();
     }
 
     /**
@@ -32,8 +36,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid){
         super(col, row, grid);
+        simpleGfxGrid = grid;
 
-        throw new UnsupportedOperationException();
+
+        rectangle = new Rectangle(grid.columnToX(col), grid.rowToY(row), grid.getCellSize(), grid.getCellSize());
+        rectangle.fill();
     }
 
     /**
@@ -41,7 +48,9 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void show() {
-        throw new UnsupportedOperationException();
+
+
+        rectangle.fill();
     }
 
     /**
@@ -49,7 +58,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void hide() {
-        throw new UnsupportedOperationException();
+
+        rectangle.delete();
     }
 
     /**
@@ -65,6 +75,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void setColor(GridColor color) {
-        throw new UnsupportedOperationException();
+
+        rectangle.setColor( SimpleGfxColorMapper.getColor(color));
+        super.setColor(color);
     }
 }
