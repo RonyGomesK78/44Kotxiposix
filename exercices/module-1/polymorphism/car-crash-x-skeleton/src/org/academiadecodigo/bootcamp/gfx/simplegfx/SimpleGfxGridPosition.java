@@ -23,9 +23,9 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public SimpleGfxGridPosition(SimpleGfxGrid grid){
 
         super((int) (Math.random() * grid.getCols()), (int) (Math.random() * grid.getRows()), grid);
-        simpleGfxGrid = grid;
+        /*simpleGfxGrid = grid;
         rectangle = new Rectangle(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, grid.getCellSize(), grid.getCellSize());
-        rectangle.fill();
+        rectangle.fill();*/
     }
 
     /**
@@ -67,7 +67,19 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void moveInDirection(GridDirection direction, int distance) {
-        throw new UnsupportedOperationException();
+
+        int col = getCol();
+        int row = getRow();
+
+        super.moveInDirection(direction, distance);
+
+        int moveCol = col != getCol() ? getCol() - col : 0;
+        int moveRow = row != getRow() ? getRow() - row : 0;
+
+        int x = simpleGfxGrid.columnToX(moveCol) - SimpleGfxGrid.PADDING;
+        int y = simpleGfxGrid.rowToY(moveRow) - SimpleGfxGrid.PADDING;
+
+        rectangle.translate(x, y);
     }
 
     /**
@@ -76,7 +88,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void setColor(GridColor color) {
 
-        rectangle.setColor( SimpleGfxColorMapper.getColor(color));
+        //rectangle.setColor(SimpleGfxColorMapper.getColor(color));
         super.setColor(color);
     }
 }

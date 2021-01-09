@@ -107,6 +107,8 @@ public class SimpleGfxGridTest {
             }
 
             if (gridPos.getX() != SimpleGfxGrid.PADDING || gridPos.getY() != SimpleGfxGrid.PADDING) {
+
+                System.out.println(gridPos.getX() + " : " + 10);
                 return new TestResult(false, "shape is not properly placed on the grid");
             }
 
@@ -238,6 +240,7 @@ public class SimpleGfxGridTest {
 
                 if (gridPos.getX() != pos.getCol() * grid.getCellSize() + SimpleGfxGrid.PADDING
                         || gridPos.getY() != pos.getRow() * grid.getCellSize() + SimpleGfxGrid.PADDING) {
+                    System.out.println(gridPos.getX() + " == " + (pos.getCol() * grid.getCellSize() + 10));
                     return new TestResult(false, "shape position coordinates are wrong after moving down");
                 }
 

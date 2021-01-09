@@ -13,7 +13,7 @@ public class SimpleGfxGrid implements Grid {
 
     private int cols;
     private int rows;
-    private int cellSize = 15;
+    private int cellSize = 20;
 
     private Rectangle carTrack;
 
