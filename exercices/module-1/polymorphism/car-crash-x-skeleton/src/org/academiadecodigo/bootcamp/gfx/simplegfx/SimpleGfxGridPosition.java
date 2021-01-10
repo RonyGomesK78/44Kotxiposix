@@ -68,16 +68,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void moveInDirection(GridDirection direction, int distance) {
 
-        int col = getCol();
+        int col = getCol(); //save the logic position(col & row) before the moveInDirection method
         int row = getRow();
 
         super.moveInDirection(direction, distance);
 
-        int moveCol = col != getCol() ? getCol() - col : 0;
-        int moveRow = row != getRow() ? getRow() - row : 0;
+        //int moveCol = col != getCol() ? getCol() - col : 0; // compare the the logic position against the after
+        //int moveRow = row != getRow() ? getRow() - row : 0; // and before move method call, if different compute how many rows or cols moved
 
-        int x = simpleGfxGrid.columnToX(moveCol) - SimpleGfxGrid.PADDING;
-        int y = simpleGfxGrid.rowToY(moveRow) - SimpleGfxGrid.PADDING;
+        int x = simpleGfxGrid.columnToX(getCol() - col) - SimpleGfxGrid.PADDING;
+        int y = simpleGfxGrid.rowToY(getRow() - row) - SimpleGfxGrid.PADDING;
 
         rectangle.translate(x, y);
     }
@@ -88,7 +88,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void setColor(GridColor color) {
 
-        //rectangle.setColor(SimpleGfxColorMapper.getColor(color));
+        rectangle.setColor(SimpleGfxColorMapper.getColor(color));
         super.setColor(color);
     }
 }
