@@ -3,37 +3,37 @@ package org.academiadecodigo.kotxiposix.exceptions;
 public class FileManager {
 
     private File[] files;
-    private boolean isLogIn;
+    private boolean isLoggedIn;
 
-    public FileManager(int containerLength){
+    public FileManager(int containerLength) {
 
-        this.files = new File[ containerLength];
-        isLogIn = false;
+        this.files = new File[containerLength];
+        isLoggedIn = false;
     }
 
-    public void login(){
+    public void login() {
 
-        isLogIn = true;
+        isLoggedIn = true;
     }
 
-    public void logout(){
+    public void logout() {
 
-        if (isLogIn){
+        if (isLoggedIn) {
 
-            isLogIn = false;
+            isLoggedIn = false;
         }
     }
 
-    public File getFile(String searchFile) throws FileNotFoundException{
+    public File getFile(String searchFile) throws FileNotFoundException {
 
         for (File file : files) {
 
-            if (file == null){
+            if (file == null) {
 
                 continue;
             }
 
-            if (file.getFileName() == searchFile){
+            if (file.getFileName().equals(searchFile)) {
 
                 return file;
             }
@@ -42,16 +42,16 @@ public class FileManager {
         throw new FileNotFoundException();
     }
 
-    public void createFile(String fileName) throws NotEnoughSpaceException, NotEnoughPermissionsException{
+    public void createFile(String fileName) throws NotEnoughSpaceException, NotEnoughPermissionsException {
 
-        if (!isLogIn){
+        if (!isLoggedIn) {
 
             throw new NotEnoughPermissionsException();
         }
 
-        for (int i = 0; i < files.length; i++){
+        for (int i = 0; i < files.length; i++) {
 
-            if (files[i] == null){
+            if (files[i] == null) {
 
                 files[i] = new File(fileName);
                 System.out.println("Your file was created successfully");

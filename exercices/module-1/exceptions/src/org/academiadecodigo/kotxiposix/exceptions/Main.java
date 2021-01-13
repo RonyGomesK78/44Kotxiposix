@@ -14,17 +14,18 @@ public class Main {
             fileManager.createFile("readme");
             fileManager.createFile("someStuffs");
 
-        }catch (NotEnoughPermissionsException e){
+        } catch (NotEnoughPermissionsException e) {
 
-            System.out.println(e);;
-        }catch (NotEnoughSpaceException e){
+            System.out.println(e);
+
+        } catch (NotEnoughSpaceException e) {
 
             System.out.println(e);
         }
 
         fileManager.logout();
 
-        try{
+        try {
 
             file = fileManager.getFile("someStuffs");
             System.out.println(file.getFileName());
@@ -32,10 +33,10 @@ public class Main {
             file = fileManager.getFile("asd");
             System.out.println(file.getFileName());
 
-        }catch (FileNotFoundException e){
-            System.out.println(e);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-
 
     }
 }
