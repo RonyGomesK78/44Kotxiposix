@@ -1,11 +1,11 @@
 package org.academiadecodigo.bootcamp.containers;
 
-public class LinkedList {
+public class LinkedList <T>{
 
     private Node head;
     private int length = 0;
 
-    public LinkedList() {
+    public LinkedList (){
 
         this.head = new Node(null);
     }
@@ -19,13 +19,16 @@ public class LinkedList {
      * Adds an element to the end of the list
      * @param data the element to add
      */
-    public void add(Object data)  {
+    public void add(T data)  {
 
         Node node = new Node(data);
         Node iterator = head;
+
         while (iterator.getNext() != null){
+
             iterator = iterator.getNext();
         }
+
         iterator.setNext(node);
         length++;
 
@@ -36,7 +39,7 @@ public class LinkedList {
      * @param index the index of the element
      * @return the element
      */
-    public Object get(int index) {
+    public T get(int index) {
 
 
         Node iterator = this.head.getNext();
@@ -47,6 +50,7 @@ public class LinkedList {
 
                 return iterator.getData();
             }
+
             iterator = iterator.getNext();
             index--;
         }
@@ -59,7 +63,7 @@ public class LinkedList {
      * @param data element to search for
      * @return the index of the element, or -1 if the list does not contain element
      */
-    public int indexOf(Object data) {
+    public int indexOf(T data) {
 
         Node iterator = this.head;
 
@@ -81,18 +85,18 @@ public class LinkedList {
      * @param data the element to remove
      * @return true if element was removed
      */
-    public boolean remove(Object data) {
+    public boolean remove(T data) {
 
         Node iterator = this.head.getNext();
 
 
-        if (iterator != null &&  data.equals(iterator.getData())){
+        /*if (iterator != null &&  data.equals(iterator.getData())){
 
             head.setNext(iterator.getNext());
             length--;
 
             return true;
-        }
+        }*/
 
         Node followIterator = head;
 
@@ -114,22 +118,23 @@ public class LinkedList {
         return false;
     }
 
-    private class Node {
+    private class Node{
 
-        private Object data;
+        private T data;
         private Node next;
 
-        public Node(Object data) {
+        public Node(T data) {
+
             this.data = data;
             next = null;
         }
 
-        public Object getData() {
+        public T getData() {
 
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
 
             this.data = data;
         }
@@ -143,6 +148,8 @@ public class LinkedList {
 
             this.next = next;
         }
+
+
     }
 
 }

@@ -19,7 +19,7 @@ public class LinkedListTest {
     public boolean testAdd() {
 
         // Preparation
-        LinkedList list = new LinkedList();
+        LinkedList<Integer> list = new LinkedList<Integer>();
 
         // Empty list should contain zero elements
         if (list.size() != 0) {
