@@ -1,13 +1,17 @@
 package org.academiadecodigo.bootcamp.containers;
 
-public class LinkedList <T>{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class LinkedList<T> implements Iterable<T>{
 
     private Node head;
-    private int length = 0;
+    private int length;
 
     public LinkedList (){
 
         this.head = new Node(null);
+        length = 0;
     }
 
     public int size() {
@@ -31,7 +35,58 @@ public class LinkedList <T>{
 
         iterator.setNext(node);
         length++;
+    }
 
+    /**
+     * Add an element array to the end of the list
+     * @param data the element to add
+     */
+    public void add(T[] data){
+
+        Node iterator = head;
+
+        while (iterator.getNext() != null){
+
+            iterator = iterator.getNext();
+        }
+
+        int size = data.length;
+
+        for(int i = 0; i < size; i++){
+
+            Node node = new Node(data[i]);
+            iterator.setNext(node);
+
+            length++;
+
+            iterator = iterator.getNext();
+        }
+    }
+
+    /**
+     * Add an element to the specific index of the list
+     * @param data the element to add
+     * @param index where to add
+     */
+    public void add(T data, int index){
+
+        if (index <= length){
+
+            Node iterator = head;
+            Node node = new Node(data);
+
+            while (iterator != null && index >= 0){
+
+                if (index == 0){
+
+                    node.setNext(iterator.getNext());
+                    iterator.setNext(node);
+                }
+                index--;
+                iterator = iterator.getNext();
+            }
+            length++;
+        }
     }
 
     /**
@@ -116,6 +171,46 @@ public class LinkedList <T>{
         }
 
         return false;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+
+        Node current = head;
+
+        @Override
+        public boolean hasNext() {
+
+            return current.getNext() != null;
+        }
+
+        @Override
+        public T next() {
+
+            current = current.getNext();
+
+            return current.getData();
+            /*
+            if (current.hasNext()){
+
+                return current.getNext().getData();
+            }
+
+            throw new NoSuchElementException();
+
+             */
+        }
+
+        @Override
+        public void remove() {
+
+            LinkedList.this.remove(current.data);
+        }
     }
 
     private class Node{
