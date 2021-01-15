@@ -1,11 +1,13 @@
 package org.academiadecodigo.bootcamp.containers;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements Iterable<T>{
 
     private Node head;
+    private Node lastRemoved = null;
     private int length;
 
     public LinkedList (){
@@ -157,8 +159,9 @@ public class LinkedList<T> implements Iterable<T>{
             if (data.equals(iterator.getData())){
 
                 followIterator.setNext(iterator.getNext());
-
                 length--;
+
+                lastRemoved = iterator;
 
                 return true;
             }
@@ -170,7 +173,31 @@ public class LinkedList<T> implements Iterable<T>{
         return false;
     }
 
-    //public boolean undoLastRemoved()
+    /**
+     * Add the last element removed
+     * @return
+     */
+    public boolean undoLastRemoved(){
+
+        Node iterator = head;
+
+        while (iterator != null){
+
+            //System.out.println(iterator.getNext() + " : " + lastRemoved.getNext());
+            if (iterator.getNext() == lastRemoved.getNext()){
+
+                iterator.setNext(lastRemoved);
+                lastRemoved = null;
+
+                length++;
+
+                return true;
+            }
+
+            iterator = iterator.getNext();
+        }
+        return false;
+    }
 
     @Override
     public Iterator<T> iterator() {
