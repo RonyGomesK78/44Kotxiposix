@@ -29,7 +29,7 @@ public class TodoItem implements Comparable<TodoItem>{
     @Override
     public int compareTo(TodoItem o) {
 
-        if (importance.compareTo(o.importance) == 0){
+       /* if (importance.compareTo(o.importance) == 0){
 
             if (priority > o.priority){
 
@@ -37,9 +37,9 @@ public class TodoItem implements Comparable<TodoItem>{
             }
 
             return -1;
-        }
-
-        return importance.compareTo(o.importance);
+        }*/
+        return importance.compareTo(o.importance) == 0 ? Integer.compare(this.priority, o.priority) : importance.compareTo(o.importance);
+        //return importance.compareTo(o.importance);
     }
 
     @Override
@@ -47,6 +47,7 @@ public class TodoItem implements Comparable<TodoItem>{
         return "TodoItem{" +
                 "itemDescription='" + itemDescription + '\'' +
                 ", importance=" + importance +
+                ", priority=" + priority +
                 '}';
     }
 }
