@@ -20,17 +20,17 @@ public class Main {
 
         //System.out.println(cadetNames.get(0) + " : " + cadetNames.size());
 
-        /*cadetNames.remove("Rony");
+        cadetNames.remove("Rony");
         cadetNames.remove("Sandro");
         for (String name : cadetNames) {
 
             System.out.println(name);
-        }*/
-
-
-        for (int i = 0; i < cadetNames.size(); i++) {
-            System.out.println(cadetNames.get(i) + " : " + i);
         }
+
+
+        /*for (int i = 0; i < cadetNames.size(); i++) {
+            System.out.println(cadetNames.get(i) + " : " + i);
+        }*/
 
 
     }

@@ -143,8 +143,6 @@ public class LinkedList<T> implements Iterable<T>{
     public boolean remove(T data) {
 
         Node iterator = this.head.getNext();
-
-
         /*if (iterator != null &&  data.equals(iterator.getData())){
 
             head.setNext(iterator.getNext());
@@ -152,7 +150,6 @@ public class LinkedList<T> implements Iterable<T>{
 
             return true;
         }*/
-
         Node followIterator = head;
 
         while (iterator != null){
@@ -173,6 +170,8 @@ public class LinkedList<T> implements Iterable<T>{
         return false;
     }
 
+    //public boolean undoLastRemoved()
+
     @Override
     public Iterator<T> iterator() {
 
@@ -192,18 +191,15 @@ public class LinkedList<T> implements Iterable<T>{
         @Override
         public T next() {
 
+
+            if (!hasNext()){
+
+                throw new NoSuchElementException();
+            }
+
             current = current.getNext();
 
             return current.getData();
-            /*
-            if (current.hasNext()){
-
-                return current.getNext().getData();
-            }
-
-            throw new NoSuchElementException();
-
-             */
         }
 
         @Override
@@ -211,6 +207,8 @@ public class LinkedList<T> implements Iterable<T>{
 
             LinkedList.this.remove(current.data);
         }
+
+
     }
 
     private class Node{
