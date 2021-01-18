@@ -11,10 +11,19 @@ public class TodoList {
         return todoList.add(todoItem);
     }
 
-    public PriorityQueue<TodoItem> getTodoList(){
+    public boolean offer(TodoItem todoItem){
 
-        return this.todoList;
+        return todoList.offer(todoItem);
     }
 
+    public boolean isEmpty(){
+
+        return todoList.isEmpty();
+    }
+
+    public TodoItem poll(){
+
+        return todoList.poll();
+    }
 
 }
