@@ -7,7 +7,7 @@ public class RangeTest {
 
     public static void main(String[] args) {
 
-        Range r = new Range(-5, 5, DirectionType.BACKWARD);
+        Range r = new Range(-5, 5, DirectionType.FORWARD);
 
         System.out.println("--- USING ITERATOR ---");
         Iterator<Integer> it = r.iterator();
