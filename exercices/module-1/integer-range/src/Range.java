@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.ARETURN;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -8,12 +10,15 @@ public class Range implements Iterable<Integer> {
 
     private int min;
     private int max;
-
+    private DirectionType directionType;
     private boolean[] removed;
 
-    public Range(int min, int max) {
+    public Range(int min, int max, DirectionType directionType) {
+
         this.min = min;
         this.max = max;
+
+        this.directionType = directionType;
 
         //The size of array is +1 to be inclusive of both min and max
         removed = new boolean[max - min + 1];
@@ -22,7 +27,13 @@ public class Range implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
 
-        return new BwdRangeIterator();
+        /*if (this.directionType == DirectionType.FORWARD){
+
+            return new FwdRangeIterator();
+        }*/
+
+        return (this.directionType == DirectionType.FORWARD ? new FwdRangeIterator() : new BwdRangeIterator());
+        //return new BwdRangeIterator();
     }
 
     private class FwdRangeIterator implements Iterator<Integer> {
@@ -97,6 +108,7 @@ public class Range implements Iterable<Integer> {
 
                 current--;
             }
+
             return current > min;
         }
 
