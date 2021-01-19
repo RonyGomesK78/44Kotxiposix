@@ -4,11 +4,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Histogram histogram = new Histogram("Hello Samuel Samuela Rony Hello Is It Me Me Samuel");
+        HistogramComposition histogramComposition = new HistogramComposition("Hello Samuel Samuela Rony Hello Is It Me Me Samuel");
 
-        for (String word : histogram) {
+        for (String word : histogramComposition) {
 
-            System.out.println(word + " : " + histogram.getValue(word));
+            System.out.println(word + " : " + histogramComposition.getValue(word));
+        }
+
+        System.out.println("------------------------------------------------------------------------------------------------------");
+
+        HistogramInheritance histogramInheritance = new HistogramInheritance("hello world hello word");
+
+        for (String word : histogramInheritance){
+
+            System.out.println(word + " : " + histogramInheritance.get(word));
         }
     }
 }

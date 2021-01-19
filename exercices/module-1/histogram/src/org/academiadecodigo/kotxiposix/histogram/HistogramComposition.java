@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Histogram implements Iterable<String>{
+public class HistogramComposition implements Iterable<String>{
 
     private Map<String, Integer> hashMap;
 
@@ -15,7 +15,7 @@ public class Histogram implements Iterable<String>{
         return hashMap.keySet().iterator();
     }
 
-    public Histogram(String sentence){
+    public HistogramComposition(String sentence){
 
         hashMap = new HashMap<>();
 
