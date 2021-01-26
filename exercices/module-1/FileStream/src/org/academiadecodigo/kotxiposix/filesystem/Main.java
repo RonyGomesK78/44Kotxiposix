@@ -41,7 +41,9 @@ public class Main {
         }catch (IOException e){
 
             System.out.println("Error when read from the file or when close the file");
+
         }
+
 
     }
 }
