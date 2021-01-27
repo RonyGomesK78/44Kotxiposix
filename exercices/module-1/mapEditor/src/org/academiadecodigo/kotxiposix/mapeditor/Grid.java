@@ -1,5 +1,7 @@
 package org.academiadecodigo.kotxiposix.mapeditor;
 
+import java.io.*;
+
 public class Grid {
 
     private int cols;
@@ -45,5 +47,85 @@ public class Grid {
     public void erase(int col, int row){
 
         this.cells[col][row].erase();
+    }
+
+    private int[][] gridShot(){
+
+        int[][] paint = new int[cols][rows];
+
+        for (int i = 0; i < cols; i++) {
+
+            for (int j = 0; j < rows; j++) {
+
+                paint[i][j] = cells[i][j].isPaint ? 1 : 0;
+            }
+        }
+
+        return paint;
+    }
+
+    public void saveToFile() throws IOException {
+
+        int[][] paint = gridShot();
+
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter = null;
+
+        try {
+
+            fileWriter = new FileWriter("/Users/codecadet/44kotxiposix/exercices/module-1/mapEditor/resource/files.txt");
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+
+            for (int i = 0; i < cols; i++) {
+                String line = "";
+                for (int j = 0; j < rows; j++) {
+
+                    line += paint[i][j];
+                }
+                bufferedWriter.write(line+"\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+
+            if (bufferedWriter != null){
+
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+            }
+
+        }
+    }
+
+    public void LoadToFile(){
+
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+
+        try {
+
+            fileReader = new FileReader("/Users/codecadet/44kotxiposix/exercices/module-1/mapEditor/resource/files.txt");
+            bufferedReader = new BufferedReader(fileReader);
+
+           // String result = "";
+            String line = "";
+
+            for (int i = 0; i < cols; i++) {
+
+                for (int j = 0; j < rows; j++) {
+
+                    line = bufferedReader.readLine();
+
+                }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -5,6 +5,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import java.io.IOException;
+
 public class KeyboardManager implements KeyboardHandler {
 
     private Keyboard keyboard;
@@ -44,12 +46,16 @@ public class KeyboardManager implements KeyboardHandler {
         pressSpace.setKey(KeyboardEvent.KEY_SPACE);
         pressSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent pressS = new KeyboardEvent();
+        pressS.setKey(KeyboardEvent.KEY_S);
+        pressS.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(pressRight);
         keyboard.addEventListener(pressLeft);
         keyboard.addEventListener(pressUp);
         keyboard.addEventListener(pressDown);
         keyboard.addEventListener(pressSpace);
-
+        keyboard.addEventListener(pressS);
     }
 
     @Override
@@ -88,6 +94,16 @@ public class KeyboardManager implements KeyboardHandler {
                 } else {
                     mapEditor.getGrid().erase(mapEditor.getCursor().col, mapEditor.getCursor().row);
                 }
+                break;
+
+            case KeyboardEvent.KEY_S:
+                try {
+                    mapEditor.getGrid().saveToFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+
         }
     }
 

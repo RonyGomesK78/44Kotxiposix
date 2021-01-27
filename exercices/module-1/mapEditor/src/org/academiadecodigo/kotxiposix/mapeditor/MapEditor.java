@@ -5,6 +5,7 @@ public class MapEditor {
     private Grid grid;
     private Cursor cursor;
 
+
     public MapEditor(int cols, int rows){
 
         grid = new Grid(cols, rows);
