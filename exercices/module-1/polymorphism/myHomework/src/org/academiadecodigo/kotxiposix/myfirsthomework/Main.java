@@ -10,8 +10,11 @@ public class Main {
 
         Employee teacher = EmployeeFactory.makeEmployee(EmployeeType.TEACHER, "Karen Hellen", 33);
 
+
         System.out.println(student.toString());
+
         System.out.println(secretary.toString());
+
         System.out.println(teacher.toString());
     }
 }
