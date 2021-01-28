@@ -64,6 +64,16 @@ public class Grid {
         return paint;
     }
 
+    public void eraseAll(){
+
+        for (int i = 0 ; i < cols; i++){
+
+            for (int j = 0; j < rows; j++) {
+
+                erase(i, j);
+            }
+        }
+    }
     public void saveToFile() throws IOException {
 
         int[][] paint = gridShot();

@@ -46,6 +46,10 @@ public class KeyboardManager implements KeyboardHandler {
         pressSpace.setKey(KeyboardEvent.KEY_SPACE);
         pressSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent pressC = new KeyboardEvent();
+        pressC.setKey(KeyboardEvent.KEY_C);
+        pressC.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         KeyboardEvent pressS = new KeyboardEvent();
         pressS.setKey(KeyboardEvent.KEY_S);
         pressS.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -59,6 +63,7 @@ public class KeyboardManager implements KeyboardHandler {
         keyboard.addEventListener(pressUp);
         keyboard.addEventListener(pressDown);
         keyboard.addEventListener(pressSpace);
+        keyboard.addEventListener(pressC);
         keyboard.addEventListener(pressS);
         keyboard.addEventListener(pressL);
     }
@@ -99,6 +104,10 @@ public class KeyboardManager implements KeyboardHandler {
                 } else {
                     mapEditor.getGrid().erase(mapEditor.getCursor().col, mapEditor.getCursor().row);
                 }
+                break;
+
+            case KeyboardEvent.KEY_C:
+                mapEditor.getGrid().eraseAll();
                 break;
 
             case KeyboardEvent.KEY_S:
