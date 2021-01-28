@@ -8,7 +8,7 @@ public class Grid {
     private int rows;
     private Cell[][] cells;
 
-    public Grid(int cols, int rows){
+    public Grid(int cols, int rows) {
 
         this.cols = cols;
         this.rows = rows;
@@ -34,22 +34,22 @@ public class Grid {
         return rows;
     }
 
-    public boolean isPainted(int col, int row){
+    public boolean isPainted(int col, int row) {
 
         return cells[col][row].getIsPainted();
     }
 
-    public void paint(int col, int row){
+    public void paint(int col, int row) {
 
         this.cells[col][row].paint();
     }
 
-    public void erase(int col, int row){
+    public void erase(int col, int row) {
 
         this.cells[col][row].erase();
     }
 
-    private int[][] gridShot(){
+    private int[][] gridShot() {
 
         int[][] paint = new int[cols][rows];
 
@@ -83,13 +83,13 @@ public class Grid {
 
                     line += paint[i][j];
                 }
-                bufferedWriter.write(line+"\n");
+                bufferedWriter.write(line + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
 
-            if (bufferedWriter != null){
+            if (bufferedWriter != null) {
 
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -99,7 +99,7 @@ public class Grid {
         }
     }
 
-    public void LoadToFile(){
+    public void LoadToFile() {
 
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -109,17 +109,20 @@ public class Grid {
             fileReader = new FileReader("/Users/codecadet/44kotxiposix/exercices/module-1/mapEditor/resource/files.txt");
             bufferedReader = new BufferedReader(fileReader);
 
-           // String result = "";
+            // String result = "";
             String line = "";
 
             for (int i = 0; i < cols; i++) {
 
+                line = bufferedReader.readLine();
+
                 for (int j = 0; j < rows; j++) {
 
-                    line = bufferedReader.readLine();
+                    if (line.charAt(j) == '1') {
 
+                        cells[i][j].paint();
+                    }
                 }
-
             }
 
         } catch (FileNotFoundException e) {

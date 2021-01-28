@@ -50,12 +50,17 @@ public class KeyboardManager implements KeyboardHandler {
         pressS.setKey(KeyboardEvent.KEY_S);
         pressS.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent pressL = new KeyboardEvent();
+        pressL.setKey(KeyboardEvent.KEY_L);
+        pressL.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(pressRight);
         keyboard.addEventListener(pressLeft);
         keyboard.addEventListener(pressUp);
         keyboard.addEventListener(pressDown);
         keyboard.addEventListener(pressSpace);
         keyboard.addEventListener(pressS);
+        keyboard.addEventListener(pressL);
     }
 
     @Override
@@ -102,6 +107,10 @@ public class KeyboardManager implements KeyboardHandler {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
+
+            case KeyboardEvent.KEY_L:
+                mapEditor.getGrid().LoadToFile();
                 break;
 
         }
