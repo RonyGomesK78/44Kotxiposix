@@ -11,6 +11,7 @@ public class KeyboardManager implements KeyboardHandler {
 
     private Keyboard keyboard;
     private MapEditor mapEditor;
+    private boolean pressingSpace = false;
 
     public enum Direction {
 
@@ -46,6 +47,10 @@ public class KeyboardManager implements KeyboardHandler {
         pressSpace.setKey(KeyboardEvent.KEY_SPACE);
         pressSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent releaseSpace = new KeyboardEvent();
+        releaseSpace.setKey(KeyboardEvent.KEY_SPACE);
+        releaseSpace.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
         KeyboardEvent pressC = new KeyboardEvent();
         pressC.setKey(KeyboardEvent.KEY_C);
         pressC.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -66,6 +71,7 @@ public class KeyboardManager implements KeyboardHandler {
         keyboard.addEventListener(pressC);
         keyboard.addEventListener(pressS);
         keyboard.addEventListener(pressL);
+        keyboard.addEventListener(releaseSpace);
     }
 
     @Override
@@ -74,52 +80,81 @@ public class KeyboardManager implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_RIGHT:
+
+                if (pressingSpace){
+
+                mapEditor.getGrid().paint(mapEditor.getCursor().col, mapEditor.getCursor().row);
+                }
+
                 if (!mapEditor.onEdge(Direction.RIGHT)) {
+
                     mapEditor.getCursor().moveRight();
+
                 }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
+
                 if (!mapEditor.onEdge(Direction.LEFT)) {
+
                     mapEditor.getCursor().moveLeft();
+
                 }
                 break;
 
             case KeyboardEvent.KEY_DOWN:
+
                 if (!mapEditor.onEdge(Direction.DOWN)) {
+
                     mapEditor.getCursor().moveDown();
+
                 }
                 break;
 
             case KeyboardEvent.KEY_UP:
+
                 if (!mapEditor.onEdge(Direction.UP)) {
+
                     mapEditor.getCursor().moveUp();
+
                 }
                 break;
 
             case KeyboardEvent.KEY_SPACE:
 
+                pressingSpace = true;
+
                 if (!(mapEditor.getGrid().isPainted(mapEditor.getCursor().col, mapEditor.getCursor().row))) {
+
                     mapEditor.getGrid().paint(mapEditor.getCursor().col, mapEditor.getCursor().row);
+
                 } else {
+
                     mapEditor.getGrid().erase(mapEditor.getCursor().col, mapEditor.getCursor().row);
+
                 }
                 break;
 
             case KeyboardEvent.KEY_C:
+
                 mapEditor.getGrid().eraseAll();
+
                 break;
 
             case KeyboardEvent.KEY_S:
+
                 try {
+
                     mapEditor.getGrid().saveToFile();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case KeyboardEvent.KEY_L:
-                mapEditor.getGrid().LoadToFile();
+
+                mapEditor.getGrid().loadToFile();
                 break;
 
         }
@@ -127,6 +162,10 @@ public class KeyboardManager implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+        pressingSpace = false;
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
 
+            mapEditor.getGrid().keepDrawingErasing(mapEditor.getCursor().col, mapEditor.getCursor().row);
+        }
     }
 }

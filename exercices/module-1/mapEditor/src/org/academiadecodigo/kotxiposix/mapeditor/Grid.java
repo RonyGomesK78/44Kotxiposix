@@ -109,7 +109,7 @@ public class Grid {
         }
     }
 
-    public void LoadToFile() {
+    public void loadToFile() {
 
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -140,5 +140,10 @@ public class Grid {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void keepDrawingErasing(int col, int row){
+
+        paint(col, row);
     }
 }
