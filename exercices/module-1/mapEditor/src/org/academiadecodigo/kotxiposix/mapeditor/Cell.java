@@ -64,8 +64,6 @@ public class Cell {
 
         if (isInverted) {
 
-            isInverted = false;
-
             if (isPaint){
 
                 cell.setColor(Color.RED);
@@ -75,6 +73,8 @@ public class Cell {
                 cell.setColor(Color.BLACK);
                 cell.draw();
             }
+
+            isInverted = false;
 
         } else {
 
