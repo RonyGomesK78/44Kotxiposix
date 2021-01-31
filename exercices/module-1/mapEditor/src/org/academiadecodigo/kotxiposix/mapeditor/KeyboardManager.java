@@ -63,6 +63,10 @@ public class KeyboardManager implements KeyboardHandler {
         pressL.setKey(KeyboardEvent.KEY_L);
         pressL.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent pressI = new KeyboardEvent();
+        pressI.setKey(KeyboardEvent.KEY_I);
+        pressI.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         keyboard.addEventListener(pressRight);
         keyboard.addEventListener(pressLeft);
         keyboard.addEventListener(pressUp);
@@ -72,6 +76,7 @@ public class KeyboardManager implements KeyboardHandler {
         keyboard.addEventListener(pressS);
         keyboard.addEventListener(pressL);
         keyboard.addEventListener(releaseSpace);
+        keyboard.addEventListener(pressI);
     }
 
     @Override
@@ -151,7 +156,12 @@ public class KeyboardManager implements KeyboardHandler {
                 mapEditor.getGrid().loadToFile();
                 break;
 
+            case KeyboardEvent.KEY_I:
+
+                mapEditor.getGrid().invertColors();
+                break;
         }
+
     }
 
     @Override

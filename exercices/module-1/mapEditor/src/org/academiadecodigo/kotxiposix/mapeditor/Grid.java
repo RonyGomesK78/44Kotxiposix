@@ -49,7 +49,7 @@ public class Grid {
         this.cells[col][row].erase();
     }
 
-    private int[][] gridShot() {
+    private int[][] printGrid() {
 
         int[][] paint = new int[cols][rows];
 
@@ -76,7 +76,7 @@ public class Grid {
     }
     public void saveToFile() throws IOException {
 
-        int[][] paint = gridShot();
+        int[][] paint = printGrid();
 
         FileWriter fileWriter;
         BufferedWriter bufferedWriter = null;
@@ -88,15 +88,19 @@ public class Grid {
 
 
             for (int i = 0; i < cols; i++) {
+
                 String line = "";
+
                 for (int j = 0; j < rows; j++) {
 
                     line += paint[i][j];
                 }
                 bufferedWriter.write(line + "\n");
             }
+
         } catch (IOException e) {
             e.printStackTrace();
+
         } finally {
 
             if (bufferedWriter != null) {
@@ -142,8 +146,15 @@ public class Grid {
         }
     }
 
-    public void keepDrawingErasing(int col, int row){
+    public void invertColors(){
 
-        paint(col, row);
+        for (int i = 0; i < cols; i++) {
+
+            for (int j = 0; j < rows; j++) {
+
+                cells[i][j].invertColors();
+            }
+        }
     }
+
 }
