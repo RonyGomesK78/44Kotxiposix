@@ -39,7 +39,7 @@ public class ServerTCP {
 
         establishConnection();
 
-        while (true) {
+        while (connection.isBound()) {
 
             receiveMessage();
 
@@ -48,6 +48,7 @@ public class ServerTCP {
                 connection.close();
                 return;
             }
+
             sendMessage();
         }
 
@@ -74,6 +75,8 @@ public class ServerTCP {
         if (message == null) {
 
             close = true;
+            System.out.println("Client close the connection \n");
+            return;
 
         } else {
 

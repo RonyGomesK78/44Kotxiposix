@@ -12,7 +12,7 @@ public class ClientTCP {
 
         connect();
 
-        while (true) {
+        while (connection.isConnected()) {
 
             getUserInput();
 
