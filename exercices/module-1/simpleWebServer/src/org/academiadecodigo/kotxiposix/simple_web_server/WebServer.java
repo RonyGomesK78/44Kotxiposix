@@ -9,8 +9,6 @@ public class WebServer {
     private ServerSocket serverSocket;
     private Socket connection;
 
-    private FileSystem fileSystem;
-
     private boolean isValidRequest = true;
 
     private String url;
@@ -33,6 +31,8 @@ public class WebServer {
 
         try {
 
+            System.out.println("Listening for connection request on " +
+                    serverSocket.getLocalSocketAddress() + "...");
             connection = serverSocket.accept();
 
         } catch (IOException e) {
@@ -48,9 +48,7 @@ public class WebServer {
 
             receiveRequest();
 
-            analiseRequest();
-
-            sendResponse();
+            // sendResponse();
         }
     }
 
@@ -59,13 +57,18 @@ public class WebServer {
         try {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line = "";
 
-            requestLine = bufferedReader.readLine();
+            requestLine = "";
 
-            /*while ((requestLine = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null && !(line.isEmpty())) {
 
-                System.out.println(requestLine);
-            }*/
+                requestLine += line + "\n";
+            }
+
+            System.out.println(requestLine);
+
+            analiseRequest();
 
         } catch (IOException e) {
 
@@ -75,7 +78,7 @@ public class WebServer {
 
     private void analiseRequest() {
 
-        if (requestLine == null) {
+        if (requestLine == null || requestLine.isEmpty()) {
 
             isValidRequest = false;
             return;
@@ -94,19 +97,18 @@ public class WebServer {
                 "/simpleWebServer/src/org/academiadecodigo/kotxiposix" +
                 "/simple_web_server/www/" + split[1].split(" ")[0];
 
-        System.out.println(requestLine);
     }
 
-    private boolean fetchData(String url) {
+    /*private boolean fetchData(String url) {
 
         File file = new File(url);
 
         fileSystem = new FileSystem();
 
         return fileSystem.compare(file);
-    }
+    }*/
 
-    private void sendResponse() {
+    /*private void sendResponse() {
 
         try {
 
@@ -158,7 +160,7 @@ public class WebServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public static void main(String[] args) {
 
