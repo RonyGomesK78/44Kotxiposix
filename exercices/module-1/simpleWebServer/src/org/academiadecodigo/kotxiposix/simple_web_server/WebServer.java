@@ -9,7 +9,7 @@ public class WebServer {
     private ServerSocket serverSocket;
     private Socket connection;
 
-    private boolean isValidRequest = true;
+    File file;
 
     private String url;
     private String requestLine;
@@ -80,7 +80,7 @@ public class WebServer {
 
         if (requestLine == null || requestLine.isEmpty()) {
 
-            isValidRequest = false;
+            file = new File("www/notValid.html");
             return;
         }
 
@@ -89,24 +89,13 @@ public class WebServer {
 
         if (!verb.equals("GET ")) {
 
-            isValidRequest = false;
+            file = new File("www/verbUnsupported.html");
             return;
         }
 
-        url = "/Users/codecadet/44kotxiposix/exercices/module-1" +
-                "/simpleWebServer/src/org/academiadecodigo/kotxiposix" +
-                "/simple_web_server/www/" + split[1].split(" ")[0];
+        file = new File("www/verb");
 
     }
-
-    /*private boolean fetchData(String url) {
-
-        File file = new File(url);
-
-        fileSystem = new FileSystem();
-
-        return fileSystem.compare(file);
-    }*/
 
     /*private void sendResponse() {
 
