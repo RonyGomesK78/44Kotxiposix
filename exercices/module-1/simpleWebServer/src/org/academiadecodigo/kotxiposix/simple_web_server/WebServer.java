@@ -9,10 +9,11 @@ public class WebServer {
     private ServerSocket serverSocket;
     private Socket connection;
 
-    File file;
+    private File file;
+    private String statusCode;
 
-    private String url;
     private String requestLine;
+    private String content_type = "Content-Type: ";
 
     private void init() {
 
@@ -42,13 +43,13 @@ public class WebServer {
 
     private void start() {
 
-        establishConnection();
 
         while (!serverSocket.isClosed()) {
 
+            establishConnection();
             receiveRequest();
+            sendResponse();
 
-            // sendResponse();
         }
     }
 
@@ -78,78 +79,102 @@ public class WebServer {
 
     private void analiseRequest() {
 
+
         if (requestLine == null || requestLine.isEmpty()) {
 
+            statusCode = "HTTP/1.0 400 Bad Request\r\n";
+            content_type += " ";
             file = new File("www/notValid.html");
+
             return;
         }
 
-        String[] split = requestLine.split("/");
-        String verb = split[0];
+        String[] splitter = requestLine.split("/");
+        String verb = splitter[0];
+        String url = splitter[1].split(" ")[0];
 
         if (!verb.equals("GET ")) {
 
-            file = new File("www/verbUnsupported.html");
+            statusCode = "HTTP/1.0 405 Method Not Allowed\r\n";
+            content_type += url;
+            file = new File("www/unsupportedVerb.html");
+
             return;
         }
 
-        file = new File("www/verb");
+        System.out.println(url);
+
+        file = inspectUrl(url);
+
 
     }
 
-    /*private void sendResponse() {
+    private File inspectUrl(String url) {
+
+        if (!url.contains(".")) {
+
+            statusCode = "HTTP/1.0 415 Unsupported Media Type\r\n";
+            content_type += "unknown";
+
+            System.out.println("not contain .");
+
+            return new File("www/html/notValid.html");
+
+        } else {
+
+            String mimeType = url.substring(url.indexOf(".") + 1);
+
+            System.out.println(mimeType);
+
+            File file = new File("www/" + mimeType + "/" + url);
+            content_type += "text/" + mimeType + ";" + " charset=UTF-8\r\n";
+
+            if (file.exists()) {
+
+                System.out.println("File exists");
+
+                statusCode = "HTTP/1.0 200 OK\r\n";
+                return file;
+
+            } else {
+
+                statusCode = "HTTP/1.0 Not Found";
+                System.out.println("not exists");
+                return new File("www/html/notFound");
+            }
+
+        }
+    }
+
+    private void sendResponse() {
 
         try {
 
             PrintWriter out = new PrintWriter(connection.getOutputStream(), true);
 
-            fileSystem = new FileSystem();
-
             FileReader fileReader;
 
             BufferedReader bufferedReader;
 
-            if (fetchData(url)) {
+            fileReader = new FileReader(file);
 
-                fileReader = new FileReader(fileSystem.files[0]);
-                bufferedReader = new BufferedReader(fileReader);
 
-                String response = "HTTP/1.0 200 OK\r\n" +
-                        "Content-Type: text/html; charset=UTF-8\r\n" +
-                        "Content-Length: <file_byte_size> \r\n" +
-                        "\r\n";
+            /*out.println("HTTP/1.0 200 Document Follows\r\n" +
+                    "Content-Type: text/html; charset=UTF-8\r\n" +
+                    "Content-Length: <file_byte_size> \r\n" +
+                    "\r\n");*/
+            out.println(statusCode +
+                    content_type +
+                    "Content-Length: <300> \r\n\r\n");
 
-                out.println(response);
-
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-
-                    out.println(line);
-                }
-
-            } else {
-
-                fileReader = new FileReader(fileSystem.files[1]);
-                bufferedReader = new BufferedReader(fileReader);
-
-                out.println("HTTP/1.0 404 Not Found\r\n" +
-                        "Content-Type: text/html; charset=UTF-8\r\n" +
-                        "Content-Length: <file_byte_size> \r\n" +
-                        "\r\n");
-
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-
-                    out.println(line);
-                }
-
-            }
-
+            out.println(fileReader.read());
+            out.println(fileReader.read());
+            out.println(fileReader.read());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public static void main(String[] args) {
 
