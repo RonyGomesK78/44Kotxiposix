@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/vscode,intellij,intellij+all,intellij+iml,linux,windows,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=vscode,intellij,intellij+all,intellij+iml,linux,windows,macos
+# Created by https://www.toptal.com/developers/gitignore/api/gradle,macos,windows,linux,vscode,intellij,intellij+iml,intellij+all
+# Edit at https://www.toptal.com/developers/gitignore?templates=gradle,macos,windows,linux,vscode,intellij,intellij+iml,intellij+all
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -293,4 +293,23 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/vscode,intellij,intellij+all,intellij+iml,linux,windows,macos
+### Gradle ###
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.toptal.com/developers/gitignore/api/gradle,macos,windows,linux,vscode,intellij,intellij+iml,intellij+all
