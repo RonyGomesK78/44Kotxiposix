@@ -17,7 +17,6 @@ public class WebServer {
 
     private void init() {
 
-
         try {
 
             serverSocket = new ServerSocket(7887);
@@ -36,6 +35,7 @@ public class WebServer {
                     serverSocket.getLocalSocketAddress() + "...");
             connection = serverSocket.accept();
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,13 +43,13 @@ public class WebServer {
 
     private void start() {
 
+        establishConnection();
 
-        while (!serverSocket.isClosed()) {
+        while (!connection.isClosed()) {
 
-            establishConnection();
             receiveRequest();
             sendResponse();
-
+            establishConnection();
         }
     }
 
@@ -140,7 +140,7 @@ public class WebServer {
 
                 statusCode = "HTTP/1.0 Not Found";
                 System.out.println("not exists");
-                return new File("www/html/notFound");
+                return new File("www/html/notFound.html");
             }
 
         }
@@ -158,18 +158,19 @@ public class WebServer {
 
             fileReader = new FileReader(file);
 
+            bufferedReader = new BufferedReader(fileReader);
 
-            /*out.println("HTTP/1.0 200 Document Follows\r\n" +
-                    "Content-Type: text/html; charset=UTF-8\r\n" +
-                    "Content-Length: <file_byte_size> \r\n" +
-                    "\r\n");*/
             out.println(statusCode +
                     content_type +
-                    "Content-Length: <300> \r\n\r\n");
+                    "Content-Length: 300 \r\n\r\n");
 
-            out.println(fileReader.read());
-            out.println(fileReader.read());
-            out.println(fileReader.read());
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+
+                out.println(line);
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
