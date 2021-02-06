@@ -31,8 +31,8 @@ public class WebServer {
 
         try {
 
-            System.out.println("Listening for connection request on " +
-                    serverSocket.getLocalSocketAddress() + "...");
+            System.out.println("****Listening for connection request on " +
+                    serverSocket.getLocalSocketAddress() + "...  ****");
             connection = serverSocket.accept();
 
 
@@ -84,7 +84,7 @@ public class WebServer {
 
             statusCode = "HTTP/1.0 400 Bad Request\r\n";
             content_type += " ";
-            file = new File("www/notValid.html");
+            file = new File("www/html/notValid.html");
 
             return;
         }
@@ -97,7 +97,7 @@ public class WebServer {
 
             statusCode = "HTTP/1.0 405 Method Not Allowed\r\n";
             content_type += url;
-            file = new File("www/unsupportedVerb.html");
+            file = new File("www/html/notValid.html");
 
             return;
         }
