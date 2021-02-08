@@ -35,7 +35,7 @@ public class BQueue<T> {
 
             try {
 
-                System.out.println("waiting consume...");
+                System.out.println("waiting for consume...");
                 wait();
                 //Thread.sleep(2000);
 
