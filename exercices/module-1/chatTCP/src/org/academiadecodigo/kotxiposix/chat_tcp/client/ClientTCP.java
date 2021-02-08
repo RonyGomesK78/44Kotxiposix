@@ -1,4 +1,4 @@
-package org.academiadecodigo.kotxiposix.chat_tcp;
+package org.academiadecodigo.kotxiposix.chat_tcp.client;
 
 import java.io.*;
 import java.net.Socket;
@@ -73,7 +73,6 @@ public class ClientTCP {
 
     public void receiveResponse() {
 
-
         try {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -84,7 +83,6 @@ public class ClientTCP {
             System.err.println("Some error occurred");
             e.printStackTrace();
         }
-
     }
 
     public void getUserInput() {
