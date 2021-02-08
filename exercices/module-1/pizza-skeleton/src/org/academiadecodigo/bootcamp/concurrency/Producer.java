@@ -11,7 +11,7 @@ public class Producer implements Runnable {
     private int pizzasToMake;
 
     /**
-     * @param queue the blocking queue to add elements to
+     * @param queue        the blocking queue to add elements to
      * @param pizzasToMake the number of elements to produce
      */
     public Producer(BQueue queue, int pizzasToMake) {
@@ -22,6 +22,14 @@ public class Producer implements Runnable {
     @Override
     public void run() {
 
+        for (int i = 0; i < pizzasToMake; i++) {
+
+            Pizza pizza = new Pizza();
+            queue.offer(pizza);
+            System.out.println(Thread.currentThread().getName() + " put " + pizza
+                    + "( " + queue.getSize() + " )");
+        }
     }
+
 
 }
