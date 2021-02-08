@@ -11,7 +11,7 @@ public class Consumer implements Runnable {
     private int pizzasToConsume;
 
     /**
-     * @param queue the blocking queue to consume elements from
+     * @param queue           the blocking queue to consume elements from
      * @param pizzasToConsume the number of elements to consume
      */
     public Consumer(BQueue queue, int pizzasToConsume) {
@@ -22,6 +22,12 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
 
+        for (int i = 0; i < pizzasToConsume; i++) {
+
+            System.out.println(Thread.currentThread().getName() + " take " + queue.poll()
+                    + "( " + queue.getSize() + " )");
+
+        }
     }
 
 }
