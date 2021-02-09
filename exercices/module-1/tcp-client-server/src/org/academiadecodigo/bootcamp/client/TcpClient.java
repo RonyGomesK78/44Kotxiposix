@@ -25,10 +25,10 @@ public class TcpClient {
             clientSocket = new Socket(hostName, port);
             serverWriter = new PrintWriter(clientSocket.getOutputStream(), true);
 
+            Thread thread = new Thread(new ClientWorker(clientSocket));
+            thread.start();
             while (true){
 
-                Thread thread = new Thread(new ClientWorker(clientSocket));
-                thread.start();
                 getUserInput();
             }
 

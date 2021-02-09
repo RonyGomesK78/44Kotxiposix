@@ -35,10 +35,13 @@ public class ClientWorker implements Runnable{
     @Override
     public void run() {
 
-        try {
-            receive();
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (true){
+
+            try {
+                receive();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
