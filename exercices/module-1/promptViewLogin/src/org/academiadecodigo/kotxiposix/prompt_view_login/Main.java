@@ -6,6 +6,7 @@ import org.academiadecodigo.bootcamp.scanners.string.PasswordInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringSetInputScanner;
 
+import java.lang.invoke.SwitchPoint;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -14,33 +15,26 @@ import java.util.Set;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        Prompt prompt = new Prompt(System.in, System.out);
+        Menu menu = new Menu();
 
-        Set<String> user = new HashSet<>();
-        user.add("Luis");
-        user.add("Rony");
+        SignUp signUp = new SignUp();
+        Login login = new Login();
 
-        StringSetInputScanner username = new StringSetInputScanner(user);
-        username.setMessage("Username : ");
-        username.setError("Username is wrong");
-        String name = prompt.getUserInput(username);
+        while (true) {
 
+            int chosen = menu.menu();
 
-        PasswordInputScanner passwordInputScanner = new PasswordInputScanner();
-        passwordInputScanner.setMessage("Password");
-        passwordInputScanner.setError("Password is incorrect");
-
-
-        String password = prompt.getUserInput(passwordInputScanner);
-
-        while (!password.equals("marte")){
-
-            password = prompt.getUserInput(passwordInputScanner);
+            switch (chosen) {
+                case 1:
+                    login.login();
+                    break;
+                case 2:
+                    signUp.signUp();
+                    break;
+            }
         }
-        System.out.println("Login Successfully!");
-
 
     }
 }
