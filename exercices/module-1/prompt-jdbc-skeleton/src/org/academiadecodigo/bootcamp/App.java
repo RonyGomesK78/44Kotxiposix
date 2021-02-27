@@ -45,6 +45,8 @@ public class App {
                 "João", "Faustino", "966666666"));
         userService.add(new User("audrey", "audrey@academiadecodigo.org", Security.getHash("academiadecodigo"),
                 "Audrey", "Lopes", "934567890"));
+        userService.add(new User("elvin", "elvin@email.com", Security.getHash("dxc"),
+                "Elvin", "Reis", "12345678"));
 
         // Wire login controller and view
         loginView.setPrompt(prompt);

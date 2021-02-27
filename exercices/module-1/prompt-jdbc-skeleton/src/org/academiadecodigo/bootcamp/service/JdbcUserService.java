@@ -1,12 +1,11 @@
 package org.academiadecodigo.bootcamp.service;
 
+import com.sun.codemodel.internal.JStatement;
 import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.persistence.ConnectionManager;
+import org.academiadecodigo.bootcamp.utils.Security;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,25 +23,29 @@ public class JdbcUserService implements UserService {
     @Override
     public boolean authenticate(String username, String password){
 
-        Statement auth = null;
+        boolean valid = false;
         try {
 
-            auth = connection.createStatement();
+            String query = "SELECT * FROM user WHERE username = ? " +
+                    "AND password = ?";
 
-            String query = "SELECT * FROM user where username = '" +
-                    username + "' AND password = '" + password +"';";
+            PreparedStatement statement = connection.prepareStatement(query);
 
-            ResultSet resultSet = auth.executeQuery(query);
+            statement.setString(2, Security.getHash(password));
+            statement.setString(1, username);
+
+            ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                return true;
+                valid = true;
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
 
-        return false;
+        return valid;
     }
 
     @Override
@@ -52,19 +55,21 @@ public class JdbcUserService implements UserService {
             return;
         }
 
-        String query = "INSERT INTO user (username, password, email, firstname, lastname, phone)" +
-                "VALUES(" +
-                    "'" + user.getUsername() +
-                    "','" + user.getPassword() +
-                    "','" + user.getEmail() +
-                    "','" + user.getFirstName() +
-                    "','" + user.getLastName() +
-                    "','" + user.getPhone() + "');";
+        String query = "INSERT INTO user (username, password, email, firstname, lastname, phone) " +
+                "VALUES(?, ?, ?, ?, ?, ?)";
 
         try {
 
-            Statement insert = connection.createStatement();
-            insert.executeUpdate(query);
+            PreparedStatement insert = connection.prepareStatement(query);
+
+            insert.setString(1, user.getUsername());
+            insert.setString(2, user.getPassword());
+            insert.setString(3, user.getEmail());
+            insert.setString(4, user.getFirstName());
+            insert.setString(5, user.getLastName());
+            insert.setString(6, user.getPhone());
+
+            insert.executeUpdate();
 
 
         } catch (SQLException throwables) {
@@ -75,11 +80,13 @@ public class JdbcUserService implements UserService {
     @Override
     public User findByName(String username) {
 
-        String query = "SELECT * FROM user WHERE username = '" + username + "';";
+        String query = "SELECT * FROM user WHERE username = ?";
         try {
 
-            Statement findByName = connection.createStatement();
-            ResultSet resultSet = findByName.executeQuery(query);
+            PreparedStatement findByName = connection.prepareStatement(query);
+            findByName.setString(1, username);
+
+            ResultSet resultSet = findByName.executeQuery();
 
             if (resultSet.next()) {
 
@@ -103,14 +110,15 @@ public class JdbcUserService implements UserService {
     @Override
     public List<User> findAll() {
 
-        String query = "SELECT *FROM user;";
+        List<User> users= null;
+        String query = "SELECT *FROM user";
 
         try {
 
-            Statement getAll = connection.createStatement();
-            ResultSet resultSet = getAll.executeQuery(query);
+            PreparedStatement getAll = connection.prepareStatement(query);
+            ResultSet resultSet = getAll.executeQuery();
 
-            List<User> users = new LinkedList<>();
+            users = new LinkedList<>();
             while (resultSet.next()){
 
                 users.add(
@@ -130,11 +138,28 @@ public class JdbcUserService implements UserService {
             throwables.printStackTrace();
         }
 
-        return null;
+        return users;
     }
 
     @Override
     public int count() {
-        return 0;
+
+        int result = 0;
+        String query = "SELECT COUNT(*) FROM user";
+
+        try {
+
+            PreparedStatement count = connection.prepareStatement(query);
+            ResultSet resultSet = count.executeQuery();
+
+            if(resultSet.next()){
+                result = resultSet.getInt("id");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return result;
     }
 }
