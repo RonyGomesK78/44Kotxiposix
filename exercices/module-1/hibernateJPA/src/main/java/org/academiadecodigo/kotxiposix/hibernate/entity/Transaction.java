@@ -1,7 +1,7 @@
 package org.academiadecodigo.kotxiposix.hibernate.entity;
 
-public interface Transaction {
+public interface Transaction<T> {
 
-    public User saveOrUpdate(User user);
-    public User findById(Integer id);
+    public T saveOrUpdate(T object);
+    public T findById(Integer id);
 }

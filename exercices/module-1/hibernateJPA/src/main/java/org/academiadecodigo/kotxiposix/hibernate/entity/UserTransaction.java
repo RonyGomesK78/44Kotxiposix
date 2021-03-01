@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 
-public class UserTransaction implements Transaction{
+public class UserTransaction implements Transaction<User>{
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("entity");
 
