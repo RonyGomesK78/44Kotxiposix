@@ -27,6 +27,7 @@ public class TcpClient {
 
             Thread thread = new Thread(new ClientWorker(clientSocket));
             thread.start();
+
             while (true){
 
                 getUserInput();

@@ -1,7 +1,6 @@
 package org.academiadecodigo.kotxiposix.hibernate.inheritance.joined_table;
 
-import org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass.AbstractTransaction;
-import org.academiadecodigo.kotxiposix.hibernate.inheritance.joined_table.Boat;
+import org.academiadecodigo.kotxiposix.hibernate.transaction.AbstractTransaction;
 import org.academiadecodigo.kotxiposix.hibernate.inheritance.table_per_class.Car;
 
 public class JoinedTableTest {
@@ -18,7 +17,7 @@ public class JoinedTableTest {
         car.setGears(1);
         car.setMaxSpeed(300);
 
-        AbstractTransaction abstractTransaction = new AbstractTransaction();
+        AbstractTransaction abstractTransaction = new AbstractTransaction("inheritanceJoined");
         abstractTransaction.saveOrUpdate(boat);
         abstractTransaction.saveOrUpdate(car);
     }

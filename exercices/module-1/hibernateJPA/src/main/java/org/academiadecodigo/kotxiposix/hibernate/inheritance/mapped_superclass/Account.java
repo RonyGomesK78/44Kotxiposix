@@ -1,6 +1,7 @@
 package org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,4 +9,12 @@ import javax.persistence.Table;
 public class Account extends AbstractModel{
 
     private Double balance;
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
 }

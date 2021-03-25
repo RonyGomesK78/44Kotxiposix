@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp;
+package org.academiadecodigo.bootcamp.server;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -43,36 +43,15 @@ public class TcpServer {
                 clientSocket = server.accept();
                 System.out.println("\n --- Connection accepted ---");
 
-                serveClient(clientSocket);
+                Thread thread = new Thread(new ServerWorker(clientSocket));
+                thread.start();
 
             } catch (IOException e) {
                 e.printStackTrace();
-
-            } finally {
-                close(clientSocket);
             }
         }
     }
 
-    private void serveClient(Socket clientSocket) throws IOException {
-
-        PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-        String clientMessage = bufferedReader.readLine();
-
-        while (clientMessage != null) {
-            System.out.println("Client ip: " + clientSocket.getInetAddress().getHostAddress()
-                    + " port: " + clientSocket.getPort()
-                    + " message: " + clientMessage);
-
-            printWriter.println(clientMessage);
-            clientMessage = bufferedReader.readLine();
-        }
-
-        System.out.println("\n --- Connection closed ---");
-    }
 
     private void close(Closeable closeable) {
         if (closeable == null) {

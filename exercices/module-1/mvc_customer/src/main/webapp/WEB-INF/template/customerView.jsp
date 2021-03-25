@@ -6,12 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <title>Customer Details</title>
 </head>
 <body>
-    <p>Name : ${name}</p>
-    <p>Age : ${age}</p>
+    <h1>Name : ${customer.name}</h1>
+    <h1>Age : ${customer.age}</h1>
 </body>
 </html>

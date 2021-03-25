@@ -29,7 +29,7 @@ public class ClientWorker implements Runnable{
 
     private void receive() throws IOException {
 
-        System.out.println("From Server: " + serverReader.readLine());
+        System.out.println("\nFrom Server: " + serverReader.readLine());
     }
 
     @Override

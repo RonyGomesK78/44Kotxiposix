@@ -1,6 +1,6 @@
 package org.academiadecodigo.kotxiposix.hibernate.inheritance.single_table;
 
-import org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass.AbstractTransaction;
+import org.academiadecodigo.kotxiposix.hibernate.transaction.AbstractTransaction;
 
 public class SingleTableTest {
 
@@ -14,7 +14,7 @@ public class SingleTableTest {
         car.setGears(1);
         car.setMaxSpeed(240);
 
-        AbstractTransaction abstractTransaction = new AbstractTransaction();
+        AbstractTransaction abstractTransaction = new AbstractTransaction("inheritanceSingle");
 
         abstractTransaction.saveOrUpdate(boat);
 

@@ -1,22 +1,28 @@
-package org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass;
+package org.academiadecodigo.kotxiposix.hibernate.transaction;
 
-import org.academiadecodigo.kotxiposix.hibernate.entity.Transaction;
+import org.academiadecodigo.kotxiposix.hibernate.entity.User;
 
 import javax.persistence.*;
 
-public class AbstractTransaction implements Transaction {
+public class AbstractTransaction<T> implements Transaction<T>{
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("abstractModel");
+
+    EntityManagerFactory emf;
+
+    public AbstractTransaction(String persistenceUnit){
+        this.emf = Persistence.createEntityManagerFactory(persistenceUnit);
+    }
+
 
     @Override
-    public Object saveOrUpdate(Object object) {
+    public T saveOrUpdate(T object) {
 
         EntityManager em = emf.createEntityManager();
 
         try {
 
             em.getTransaction().begin();
-            Object savedObject = em.merge(object);
+            T savedObject = em.merge(object);
             em.getTransaction().commit();
 
             return savedObject;
@@ -33,6 +39,20 @@ public class AbstractTransaction implements Transaction {
 
     @Override
     public Object findById(Integer id) {
+
+       /* EntityManager em = emf.createEntityManager();
+
+        try {
+            // fetch a new user using its id
+            //return em.find(T.class, id); // always the primary key
+            return em.find(Object.class, id); // always the primary key
+        } finally {
+            // make sure we close the database connection
+            if (em != null) {
+                em.close();
+            }
+        }*/
+
         return null;
     }
 }

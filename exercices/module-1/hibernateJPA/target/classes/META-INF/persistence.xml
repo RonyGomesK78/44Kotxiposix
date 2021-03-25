@@ -34,17 +34,17 @@
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
 
     </persistence-unit>
 
-    <persistence-unit name="addressComponent" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="componentMap" transaction-type="RESOURCE_LOCAL">
         <!-- provider element declares the class that provides the initial factory
             for creating an EntityManager instance -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>org.academiadecodigo.kotxiposix.hibernate.component.Address</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.component.Student</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
@@ -54,16 +54,18 @@
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
 
     </persistence-unit>
-    <persistence-unit name="abstractModel" transaction-type="RESOURCE_LOCAL">
+
+    <persistence-unit name="mappedInheritance" transaction-type="RESOURCE_LOCAL">
         <!-- provider element declares the class that provides the initial factory
             for creating an EntityManager instance -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>org.academiadecodigo.kotxiposix.hibernate.component.Address</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass.Customer</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.mapped_superclass.Account</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
@@ -73,10 +75,114 @@
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
 
     </persistence-unit>
 
+    <persistence-unit name="inheritanceSingle" transaction-type="RESOURCE_LOCAL">
+        <!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.single_table.Vehicle</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+
+    </persistence-unit>
+
+    <persistence-unit name="inheritanceTable" transaction-type="RESOURCE_LOCAL">
+        <!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.table_per_class.Boat</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.table_per_class.Car</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+
+    </persistence-unit>
+
+    <persistence-unit name="inheritanceJoined" transaction-type="RESOURCE_LOCAL">
+        <!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.joined_table.Vehicle</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.joined_table.Car</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.inheritance.joined_table.Boat</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+
+    </persistence-unit>
+
+    <persistence-unit name="oneToOne" transaction-type="RESOURCE_LOCAL">
+        <!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.academiadecodigo.kotxiposix.hibernate.associations.one_to_one.Car</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.associations.one_to_one.Owner</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+
+    </persistence-unit>
+
+    <persistence-unit name="manyToOne" transaction-type="RESOURCE_LOCAL">
+        <!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.academiadecodigo.kotxiposix.hibernate.associations.many_to_one.Category</class>
+        <class>org.academiadecodigo.kotxiposix.hibernate.associations.many_to_one.Product</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jpa"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+
+    </persistence-unit>
 
 </persistence>

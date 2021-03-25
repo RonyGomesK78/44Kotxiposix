@@ -1,6 +1,10 @@
-package org.academiadecodigo.bootcamp;
+package org.academiadecodigo.bootcamp.model;
 
 public class Customer {
+    public Customer(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     private String name;
     private int age;

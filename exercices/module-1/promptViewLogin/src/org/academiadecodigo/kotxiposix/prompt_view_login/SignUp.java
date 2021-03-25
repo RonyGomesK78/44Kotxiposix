@@ -1,12 +1,7 @@
 package org.academiadecodigo.kotxiposix.prompt_view_login;
 
 import org.academiadecodigo.bootcamp.Prompt;
-import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
-import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
-import org.academiadecodigo.bootcamp.scanners.string.StringSetInputScanner;
-
-import java.util.Set;
 
 public class SignUp {
 
